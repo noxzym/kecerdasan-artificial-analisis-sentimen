@@ -25,7 +25,7 @@ def initialize_data():
 
 
 # Membuat bar chart
-def create_bar_chart_sentiment():
+def create_bar_chart_sentiment_distribution():
     distribution_df = (
         df.groupby("sentiment", observed=False)
         .agg({"sentiment": "count"})
@@ -39,19 +39,13 @@ def create_bar_chart_sentiment():
         y="count",
         labels={"sentiment": "Sentiment", "count": "Count"},
         title="Distribusi Sentimen",
-        color="sentiment",
-        color_discrete_map={
-            "positif": "blue",
-            "netral": "gray",
-            "negatif": "red",
-        },
     )
 
     st.plotly_chart(fig)
 
 
 # Membuat line chart
-def create_line_chart_sentiment():
+def create_line_chart_sentiment_distribution():
     distribution_df = (
         df.groupby(["date", "sentiment"], observed=False)
         .agg({"sentiment": "count"})
@@ -223,8 +217,8 @@ st.title("Dashboard Analisis Sentimen")
 st.write("Dashboard ini menampilkan analisis sentimen dari dataset yang telah diolah.")
 
 # Menampilkan data
-create_bar_chart_sentiment()
-create_line_chart_sentiment()
+create_bar_chart_sentiment_distribution()
+create_line_chart_sentiment_distribution()
 create_word_cloud_sentiment()
 create_bar_chart_important_words()
 
