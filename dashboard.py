@@ -37,7 +37,7 @@ def create_bar_chart_sentiment_distribution():
         distribution_df,
         x="sentiment",
         y="count",
-        labels={"sentiment": "Sentiment", "count": "Count"},
+        labels={"Sentimen": "Sentiment", "count": "Jumlah"},
         title="Distribusi Sentimen",
     )
 
@@ -57,8 +57,8 @@ def create_line_chart_sentiment_distribution():
         distribution_df,
         x="date",
         y="count",
-        labels={"date": "Date", "count": "Count"},
-        title="Distribusi Sentimen per Hari",
+        labels={"date": "Tanggal", "count": "Jumlah Tweet"},
+        title="Tren Sentimen dari Waktu ke Waktu",
         markers=True,
         color="sentiment",
         color_discrete_map={
@@ -116,7 +116,7 @@ def create_bar_chart_important_words():
         important_words,
         x=important_words.index,
         y=important_words.values,
-        labels={"index": "Kata", "y": "Nilai TF-IDF"},
+        labels={"index": "", "y": "Nilai TF-IDF"},
         title="Daftar 10 Kata Penting Berdasarkan TF-IDF",
     )
 
@@ -198,7 +198,11 @@ def train_naive_bayes_model():
     )
 
     # Add title
-    fig.update_layout(title_text="Distribusi Probabilitas Prediksi Naive Bayes")
+    fig.update_layout(
+        title_text="Distribusi Probabilitas Prediksi Naive Bayes",
+        xaxis_title="Probabilitas",
+        yaxis_title="Kepadatan",
+    )
 
     st.plotly_chart(fig)
 
